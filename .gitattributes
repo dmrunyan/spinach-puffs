@@ -1,0 +1,6 @@
+# Ensure that git commits all text files with a unix-style line end.
+* text=auto
+
+# Ensure that .gitattributes and .gitignore are treated as text
+*.gitattributes text
+.gitignore text
