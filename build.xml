@@ -1,0 +1,26 @@
+<project name="SpinachPuffs" default="compile" basedir=".">
+  <description>
+    Generates a spararate pdf file for several recipes
+  </description>
+  <property name="srcdir" location="src"/>
+  <property name="auxdir" location="buildfiles"/>
+  <property name="outdir" location="out"/>
+
+  <target name="compile" description="run pdflatex for each recipe">
+    <mkdir dir="${auxdir}"/>
+    <mkdir dir="${outdir}"/>
+    <apply executable="pdflatex" dir="${srcdir}">
+      <arg value="-aux-directory=${auxdir}"/>
+      <arg value="-output-directory=${outdir}"/>
+      <fileset dir="${srcdir}">
+        <include name="**/*.tex"/>
+        <exclude name="preamble.tex"/>
+      </fileset>
+    </apply>
+  </target>
+
+  <target name="clean" description="delete build artifacts">
+    <delete dir="${auxdir}"/>
+    <delete dir="${outdir}"/>
+  </target>
+</project>
